@@ -13,9 +13,9 @@ plotRevenueByWeek <- function (estimatedBillingFile) {
 	a <- aggregate (items$Estimated.Billing, by=list (Week=items$Week), FUN=sum)
 	
 	ymin = 0
-	ymax = max (a$x) + 500
 
-	print (ymax)
+	# barplot likes to go over teh ymax, so inflate it a little
+	ymax = max (a$x) + 500
 
 	barplot (a$x, names.arg=a$Week, 
 			 ylim = c (ymin, ymax),
